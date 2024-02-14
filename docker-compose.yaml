@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017" # Expose the default MongoDB port
+    volumes:
+      - mongodb_data:/data/db # Persist data across container restarts
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: pass # Replace with your own secure password
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    network_mode: host
+    depends_on:
+      - mongodb
+    # ports:
+    #   - "8080:8080" # Expose the application port
+volumes:
+  mongodb_data:

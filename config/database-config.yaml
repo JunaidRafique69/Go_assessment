@@ -1,0 +1,2 @@
+url: mongodb://admin:pass@localhost:27017/
+dbname: organization_db
